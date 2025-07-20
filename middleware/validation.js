@@ -10,7 +10,6 @@ export const validation=(Schema)=>{
             if(Schema[key]){
               let valid= Schema[key].validate(req[key],{abortEarly:false})
               if(valid.error){
-                console.log(key);
                 validationErrorArr.push(valid.error.details)
               }
 

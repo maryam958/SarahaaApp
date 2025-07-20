@@ -4,7 +4,6 @@ import { userModel } from '../DB/models/user.model.js';
 
 export const auth=()=>{
     return async(req,res,next)=>{
-        console.log(req.headers);
         let {authorization}=req.headers
         if(authorization && authorization.startsWith('Bearer')){
             let token =authorization.split(" ")[1];

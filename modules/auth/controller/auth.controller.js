@@ -25,7 +25,6 @@ export const signUp = async (req, res) => {
         process.env.JWTEMAILKEY,
         { expiresIn: 60 * 60 }
       );
-      console.log(req.protocol);
       let URL = `${req.protocol}://`;
       let message = `<a href="http://localhost:3000/api/v1/auth/confirmEmail/${token}">Please click here to verify your email </a>
       <br>
@@ -67,7 +66,6 @@ export const confirmEmail = async (req, res) => {
   let { token } = req.params;
   let decoded = jwt.verify(token, process.env.JWTEMAILKEY);
   if (decoded) {
-    console.log(decoded);
     let user = await userModel.findOne({
       _id: decoded.id,
       confirmEmail: false,
@@ -119,7 +117,6 @@ export const sendCode = async (req, res) => {
   } else {
     // let OTPCode = Math.floor(Math.random() * (1999 - 1940 + 1) + 1940);
     let OTPCode=nanoid()
-    console.log(OTPCode);
     await userModel.findByIdAndUpdate(user._id, { OTPCode });
     let message = `your OTPCode is ${OTPCode}`;
     sendEmail(user.email, message);

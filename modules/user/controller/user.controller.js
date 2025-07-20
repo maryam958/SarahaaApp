@@ -32,8 +32,6 @@ export const updatePassword = async (req, res) => {
 };
 
 export const profilePic = async (req, res) => {
-  console.log(req.file);
-
   if (!req.file) {
     res.json({ message: "Please upload image" });
   } else {
@@ -46,7 +44,6 @@ export const profilePic = async (req, res) => {
 };
 
 export const coverPic = async (req, res) => {
-  console.log(req.files);
   if (!req.files) {
     res.json({ message: "Please upload images" });
   } else {
